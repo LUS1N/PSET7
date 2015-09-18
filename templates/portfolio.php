@@ -1,6 +1,6 @@
 <div>
-    <img alt="Under Construction" src="/img/construction.gif"/>
+    <img alt="Under Construction" src="/PSET7/public/img/construction.gif"/>
 </div>
 <div>
-    <a href="logout.php">Log Out</a>
+    <a href="/PSET7/public/logout.php">Log Out</a>
 </div>

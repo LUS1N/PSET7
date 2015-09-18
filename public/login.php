@@ -37,7 +37,7 @@
                 $_SESSION["id"] = $row["id"];
 
                 // redirect to portfolio
-                redirect("/");
+                redirect("/PSET7/public/");
             }
         }
 
