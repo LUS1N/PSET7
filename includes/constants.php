@@ -13,12 +13,12 @@
     define("DATABASE", "pset7");
 
     // your database's password
-    define("PASSWORD", "crimson");
+    define("PASSWORD", "");
 
     // your database's server
     define("SERVER", "localhost");
 
     // your database's username
-    define("USERNAME", "jharvard");
+    define("USERNAME", "root");
 
 ?>

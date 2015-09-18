@@ -68,7 +68,7 @@
 
         // headers for proxy servers
         $headers = [
-            "Accept" => "*/*",
+            "Accept"     => "*/*",
             "Connection" => "Keep-Alive",
             "User-Agent" => sprintf("curl/%s", curl_version()["version"])
         ];
@@ -76,7 +76,10 @@
         // open connection to Yahoo
         $context = stream_context_create([
             "http" => [
-                "header" => implode(array_map(function($value, $key) { return sprintf("%s: %s\r\n", $key, $value); }, $headers, array_keys($headers))),
+                "header" => implode(array_map(function ($value, $key)
+                {
+                    return sprintf("%s: %s\r\n", $key, $value);
+                }, $headers, array_keys($headers))),
                 "method" => "GET"
             ]
         ]);
@@ -87,7 +90,7 @@
             trigger_error("Could not connect to Yahoo!", E_USER_ERROR);
             exit;
         }
- 
+
         // download first line of CSV file
         $data = fgetcsv($handle);
         if ($data === false || count($data) == 1)
@@ -107,8 +110,8 @@
         // return stock as an associative array
         return [
             "symbol" => $data[0],
-            "name" => $data[1],
-            "price" => floatval($data[2])
+            "name"   => $data[1],
+            "price"  => floatval($data[2])
         ];
     }
 
@@ -133,10 +136,10 @@
                 // connect to database
                 $handle = new PDO("mysql:dbname=" . DATABASE . ";host=" . SERVER, USERNAME, PASSWORD);
 
+
                 // ensure that PDO::prepare returns false when passed invalid SQL
-                $handle->setAttribute(PDO::ATTR_EMULATE_PREPARES, false); 
-            }
-            catch (Exception $e)
+                $handle->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            } catch (Exception $e)
             {
                 // trigger (big, orange) error
                 trigger_error($e->getMessage(), E_USER_ERROR);
@@ -160,8 +163,7 @@
         if ($results !== false)
         {
             return $statement->fetchAll(PDO::FETCH_ASSOC);
-        }
-        else
+        } else
         {
             return false;
         }
@@ -180,17 +182,13 @@
         if (preg_match("/^https?:\/\//", $destination))
         {
             header("Location: " . $destination);
-        }
-
-        // handle absolute path
+        } // handle absolute path
         else if (preg_match("/^\//", $destination))
         {
             $protocol = (isset($_SERVER["HTTPS"])) ? "https" : "http";
             $host = $_SERVER["HTTP_HOST"];
             header("Location: $protocol://$host$destination");
-        }
-
-        // handle relative path
+        } // handle relative path
         else
         {
             // adapted from http://www.php.net/header
@@ -223,9 +221,7 @@
 
             // render footer
             require("../templates/footer.php");
-        }
-
-        // else err
+        } // else err
         else
         {
             trigger_error("Invalid template: $template", E_USER_ERROR);
