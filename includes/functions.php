@@ -163,7 +163,8 @@
         if ($results !== false)
         {
             return $statement->fetchAll(PDO::FETCH_ASSOC);
-        } else
+        }
+        else
         {
             return false;
         }
@@ -225,6 +226,26 @@
         else
         {
             trigger_error("Invalid template: $template", E_USER_ERROR);
+        }
+    }
+
+    /**
+     * Validates the input for registration
+     */
+    function validateRegistration()
+    {
+        // validate submission
+        if (empty($_POST["username"]))
+        {
+            apologize("You must provide your username.");
+        }
+        else if (empty($_POST["password"]))
+        {
+            apologize("You must provide your password.");
+        }
+        else if ($_POST["password"] !== $_POST["confirmation"])
+        {
+            apologize("Your must passwords must match.");
         }
     }
 

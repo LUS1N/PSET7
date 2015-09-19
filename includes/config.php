@@ -20,8 +20,6 @@
     // enable sessions
     session_start();
 
-    //echo $_SERVER["PHP_SELF"];
-
     // require authentication for all pages except /login.php, /logout.php, and /register.php
     if (!in_array($_SERVER["PHP_SELF"], ["/PSET7/public/login.php", "/PSET7/public/logout.php", "/PSET7/public/register.php"]))
     {

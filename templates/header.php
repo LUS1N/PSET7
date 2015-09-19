@@ -25,7 +25,7 @@
     <div class="container">
 
         <div id="top">
-            <a href="/"><img alt="C$50 Finance" src="/PSET7/public/img/logo.gif"/></a>
+            <a href="/PSET7/public/"><img alt="C$50 Finance" src="/PSET7/public/img/logo.gif"/></a>
         </div>
 
         <div id="middle">
