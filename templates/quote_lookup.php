@@ -4,3 +4,6 @@
 <div>
     <a href="quote.php">get another quote</a>
 </div>
+<div>
+    or <a href="index.php">go back</a>
+</div>

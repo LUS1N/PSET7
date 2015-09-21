@@ -32,3 +32,20 @@
     /* surround with whitespace */
     margin: 20px;
 }
+
+#cash
+{
+    font-weight: bold;
+    background-color: #67b168;
+}
+
+th
+{
+    text-align: left;
+}
+
+tbody
+{
+    text-align: left;
+    /*background-color: #9acfea;*/
+}

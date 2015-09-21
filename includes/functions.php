@@ -50,6 +50,64 @@
     }
 
     /**
+     * Saves the positions of owned shares and cash to $_SESSION
+     */
+    function getPositions()
+    {
+        // get the owned shares for the user
+        $shares = getShares();
+
+        $id = $_SESSION["id"];
+        $cash = query("SELECT cash FROM users WHERE id = $id")[0]["cash"];
+
+
+        $_SESSION["portfolio"] = ["positions" => $shares, "cash" => $cash];
+    }
+
+    /**
+     * Returns an array with users shares
+     */
+    function getShares()
+    {
+        $id = $_SESSION["id"];
+        $rows = query("SELECT symbol, shares FROM stocks WHERE id =  $id");
+        $positions = [];
+
+        if (count($rows) == 0)
+        {
+            return $positions;
+        }
+
+        foreach ($rows as $row)
+        {
+            $stock = lookup($row["symbol"]);
+            if ($stock !== false)
+            {
+                $positions[] = [
+                    "name"   => $stock["name"],
+                    "price"  => $stock["price"],
+                    "shares" => $row["shares"],
+                    "symbol" => $row["symbol"]
+                ];
+            }
+        }
+
+        return $positions;
+    }
+
+    /**
+     * Updates the price of owned stocks
+     */
+    function updateStockValues()
+    {
+        foreach ($_SESSION["portfolio"]["positions"] as $row)
+        {
+            $stock = lookup($row["symbol"]);
+            $row["price"] = $stock["price"];
+        }
+    }
+
+    /**
      * Returns a stock by symbol (case-insensitively) else false if not found.
      */
     function lookup($symbol)
