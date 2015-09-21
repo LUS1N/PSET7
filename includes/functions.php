@@ -275,6 +275,11 @@
             // render header
             require("../templates/header.php");
 
+            if ($template !== "login_form.php")
+            {
+                require("../templates/links.php");
+            }
+
             // render template
             require("../templates/$template");
 
