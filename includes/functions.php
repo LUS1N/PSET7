@@ -280,11 +280,13 @@
                 require("../templates/links.php");
             }
 
+
             // render template
             require("../templates/$template");
 
             // render footer
             require("../templates/footer.php");
+
         } // else err
         else
         {

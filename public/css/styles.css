@@ -107,3 +107,9 @@ a:hover, a:active
 {
     /*background-color: #27ff15;*/
 }
+
+fieldset
+{
+    text-align: center;
+    align-self: center;
+}

@@ -25,6 +25,39 @@ function calculateTotal(el)
 /**
  * Gives user feedback if the transaction is not doable
  */
+/*
+ function checkTransaction(button)
+ {
+ var ind = button.id.indexOf("sell");
+ var id = "#" + button.id.substr(0, ind);
+ var amount = $(id);
+ var owned = $(id + "shares");
+
+ if (isNaN(amount.val()) || amount.val() < 1 || (parseInt(amount.val()) > parseInt(owned.html())))
+ {
+ makeItRed(button);
+ goodToGo = false;
+ }
+ else
+ {
+ button.style.backgroundColor = "#27ff15";
+ goodToGo = true;
+ }
+
+
+ if (button.id.indexOf("buy") > 0)
+ {
+ console.log($("#cashMoney"));
+ if ($(id + "amount") > parseFloat($("#cashMoney").val().substr(2)))
+ {
+ console.log("in");
+
+ makeItRed(button);
+ goodToGo = false;
+ }
+ }
+ }*/
+
 function checkTransaction(button)
 {
     var ind = button.id.indexOf("sell");
@@ -36,12 +69,28 @@ function checkTransaction(button)
     {
         makeItRed(button);
         goodToGo = false;
+        return;
     }
-    else
+    if (button.value.indexOf("Buy") >= 0)
     {
-        button.style.backgroundColor = "#27ff15";
-        goodToGo = true;
+        var cash = ($("#cashMoney").html().substr(2));
+        var indx = cash.indexOf(" ");
+        var newCash = cash.substr(0, indx) + cash.substr(indx + 1);
+
+        var balance = parseFloat((newCash - ($(id + "amount").html())));
+        console.log(balance);
+        if (balance < 0)
+        {
+            makeItRed(button);
+            goodToGo = false;
+            return;
+        }
     }
+
+    button.style.backgroundColor = "#27ff15";
+    goodToGo = true;
+
+
 }
 
 function makeItRed(button)
