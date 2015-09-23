@@ -25,7 +25,36 @@
         }
         else
         {
-            dump($_POST);
+            // make sure the amount is a positive number
+            if (!preg_match("/^\d+$/", $_POST["amount"]))
+            {
+                apologize("Bad input");
+            }
+            // make sure the user has enough cash
+            if ($_POST["amount"] * $_POST["price"] > $_SESSION["portfolio"]["cash"])
+            {
+                apologize("You don't have enough cash");
+            }
+
+            $id = $_SESSION["id"];
+            $symbol = $_POST["symbol"];
+            $shares = $_POST["amount"];
+            $price = $_POST["price"];
+
+
+            if (query("INSERT INTO stocks(id, symbol, shares) VALUES($id, '$symbol', $shares) ON DUPLICATE KEY UPDATE shares = shares + VALUES(shares)") !== false)
+            {
+                if (query("UPDATE users SET cash = cash - ($price * $shares) WHERE id = $id") !== false)
+                {
+                    getPositions();
+                    success("Successful purchase!");
+                }
+            }
+            else
+            {
+                apologize("Unsuccessful transaction");
+            }
+
         }
     }
 

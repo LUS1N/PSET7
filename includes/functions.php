@@ -20,6 +20,11 @@
         exit;
     }
 
+    function success($message)
+    {
+        render("success.php", ["message" => $message]);
+    }
+
     /**
      * Facilitates debugging by dumping contents of variable
      * to browser.

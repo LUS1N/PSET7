@@ -58,7 +58,7 @@
         {
             if (query("UPDATE users SET cash = cash + $cash WHERE id = $id") !== false)
             {
-                render("success_transaction.php", ["title" => "Sold"]);
+                success("Transaction successful!");
             }
         }
         else

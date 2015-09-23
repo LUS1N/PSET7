@@ -12,7 +12,7 @@
     }
 
     // update the values of owned stocks though
-    updateStockValues();
+    //updateStockValues();
 
     // render portfolio with positions
     render("portfolio.php", ["title" => "Portfolio"]);
