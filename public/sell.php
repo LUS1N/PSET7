@@ -52,12 +52,13 @@
             $query = "DELETE FROM stocks WHERE id = $id AND symbol = '$symbol'";
         }
 
-
-        $cash = $amount * $position["price"];
+        $price = $position["price"];
+        $cash = $amount * $price;
         if (query($query) !== false)
         {
             if (query("UPDATE users SET cash = cash + $cash WHERE id = $id") !== false)
             {
+                query("INSERT INTO history(id, symbol,shares,price, action) VALUES($id, '$symbol',$amount,$price, 'SELL')");
                 success("Transaction successful!");
             }
         }

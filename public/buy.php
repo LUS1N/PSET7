@@ -15,11 +15,13 @@
     }
     else if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
-        $quote;
         if (count($_POST) == 1)
         {
-            $quote = lookup($_POST["quote"]);
-            //dump($quote);
+
+            if (($quote = lookup($_POST["quote"])) === false)
+            {
+                apologize("Wrong symbol");
+            }
             render("buy_layout.php", ["title" => "Buy", "symbol" => strtoupper($quote["symbol"]), "name" => $quote["name"],
                                       "price" => $quote["price"]]);
         }
@@ -46,6 +48,7 @@
             {
                 if (query("UPDATE users SET cash = cash - ($price * $shares) WHERE id = $id") !== false)
                 {
+                    query("INSERT INTO history(id, symbol,shares,price, action ) VALUES($id, '$symbol',$shares,$price,'BUY')");
                     getPositions();
                     success("Successful purchase!");
                 }

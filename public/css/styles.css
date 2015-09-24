@@ -170,3 +170,27 @@ td
     max-width: 7em;
     min-width: 7em;
 }
+
+.historyAction, .historyShares, .historySymbol, .historyPrice
+{
+    width: 2em;
+    max-width: 2em;
+    min-width: 2em;
+}
+
+.historyTime
+{
+    width: 4em;
+    max-width: 4em;
+    min-width: 4em;
+}
+
+.SELL
+{
+    background-color: #88acc9;
+}
+
+.BUY
+{
+    background-color: #8ab87b;
+}

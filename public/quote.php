@@ -26,5 +26,6 @@
                 render("quote_lookup.php", $quote);
             }
 
+            // TODO add the ability to go to buy from here
         }
     }

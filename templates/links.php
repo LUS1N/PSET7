@@ -5,6 +5,7 @@
         <li><a href="sell.php">Sell</a></li>
         <li><a href="history.php">History</a></li>
         <li><a href="logout.php" id="logout"><strong>Log Out</strong></a></li>
+        <li><a href="account.php">Account</a></li>
     </ul>
 </div>
 <br/>
