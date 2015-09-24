@@ -45,7 +45,6 @@ function checkTransaction(button)
         var newCash = cash.substr(0, indx) + cash.substr(indx + 1);
 
         var balance = parseFloat((newCash - ($(id + "amount").html())));
-        console.log(balance);
         if (balance < 0)
         {
             makeItRed(button);

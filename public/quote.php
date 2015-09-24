@@ -5,7 +5,7 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "GET")
     {
-        render("quote_form.php", ["title" => "Quote"]);
+        render("quote_form.php", ["title" => "Quote", "action" => "quote"]);
     }
     else if ($_SERVER["REQUEST_METHOD"] == "POST")
     {

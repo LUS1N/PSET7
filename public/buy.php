@@ -11,7 +11,7 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "GET")
     {
-        render("buy_form.php", ["title" => "Buy"]);
+        render("quote_form.php", ["title" => "Buy", "action" => "buy"]);
     }
     else if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
